@@ -10,14 +10,14 @@ export function ChatHistory() {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'recent' | 'oldest' | 'name'>('recent');
 
-  useEffect(() => {
-    loadChats();
-  }, []);
-
   const loadChats = () => {
     const allChats = chatStorage.getAllChats();
     setChats(allChats);
   };
+
+  useEffect(() => {
+    loadChats();
+  }, []);
 
   const filteredChats = searchQuery
     ? chatStorage.searchChats(searchQuery)
