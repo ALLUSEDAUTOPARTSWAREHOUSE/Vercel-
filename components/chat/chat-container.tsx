@@ -16,10 +16,6 @@ export function ChatContainer({ initialChatId }: ChatContainerProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
 
-  useEffect(() => {
-    initializeChat(initialChatId);
-  }, [initialChatId]);
-
   const initializeChat = (initialId?: string) => {
     const idToUse = initialId || chatStorage.getCurrentChatId();
     if (idToUse) {
@@ -37,6 +33,10 @@ export function ChatContainer({ initialChatId }: ChatContainerProps) {
     const newChat = chatStorage.createChat('New Chat');
     setCurrentChat(newChat);
   };
+
+  useEffect(() => {
+    initializeChat(initialChatId);
+  }, [initialChatId]);
 
   const handleChatSelect = (chatId: string) => {
     const chat = chatStorage.getChat(chatId);
